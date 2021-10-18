@@ -141,9 +141,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     }
-    
     addSection.onclick = newSection;
     
+
+
+
+
     function newQuestion() {
         
         var formNewQ = document.createElement('div');
@@ -176,7 +179,7 @@ document.addEventListener('DOMContentLoaded', function () {
         formNewQ.appendChild(dropDownAddedQ);
         addedStuff.appendChild(formNewQ);
       
-        openEnded.onclick = open;
+        openBtn.onclick = open;
         
     }
     addQuestion.onclick = newQuestion;
@@ -191,6 +194,7 @@ document.addEventListener('DOMContentLoaded', function () {
         openQuestion.placeholder = 'Enter question';
         openQuestion.required = true;
         formOpen.appendChild(openQuestion);
+        addedStuff.appendChild(formOpen);
     
         var delOpen = document.createElement('div');
         delOpen.className = ('button')
@@ -205,32 +209,14 @@ document.addEventListener('DOMContentLoaded', function () {
             function delQuestion() {
                 openQuestion.hidden = true;
                 delOpen.hidden = true;
-                
-                function newQuestion() {
-        
-                    var addedQuestion = document.querySelector('#addedQuestion');
-                    var questionType = document.createElement('button');
-                    questionType.className = 'btn btn-white dropdown-toggle';
-                    questionType.type = 'button';
-                    questionType.id = 'dropdownMenuButton';
-                    questionType.setAttribute("data-toggle", "dropdown");
-                    questionType.setAttribute("aria-haspopup", "true");
-                    questionType.setAttribute("aria-expanded", "false");
-                    questionType.appendChild(document.createTextNode('Question type'));
-                    addedQuestion.appendChild(questionType);
-                  
-                    openEnded.onclick = open;
-                    
-                }
                 newQuestion();
-    
             }
     
     delOpen.onclick = delQuestion
     
-        const questionType = document.getElementById('dropdownMenuButton');
-        questionType.hidden = true;
-                                   
+    const questionType = document.getElementById('dropdownMenuButton');
+    questionType.hidden = true;
+            
     }
     openEnded.onclick = open;
     
