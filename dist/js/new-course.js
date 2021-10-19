@@ -5,8 +5,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const addQuestion = document.querySelector('#addQuestion');
     const openEnded = document.getElementById('openEnded');
     const multiple = document.getElementById('multiple');
+    const questionType = document.getElementById('dropdownMenuButton');
     var addOption = document.getElementById('addOption');
-    var addedStuff = document.getElementById('addedStuff');
+    const addedStuff = document.getElementById('addedStuff');
 
     function newSection() {
         var newLesson = document.getElementById('newLesson');
@@ -153,14 +154,14 @@ document.addEventListener('DOMContentLoaded', function () {
         formNewQ.className = ('form-group');
         var dropDownAddedQ = document.createElement('div');
         dropDownAddedQ.className = ('dropdown d-flex justify-content-center')
-        var questionType = document.createElement('button');
-        questionType.className = 'btn btn-light dropdown-toggle shadow-sm';
-        questionType.type = 'button';
-        questionType.id = 'dropdownMenuButton';
-        questionType.setAttribute("data-toggle", "dropdown");
-        questionType.setAttribute("aria-haspopup", "true");
-        questionType.setAttribute("aria-expanded", "false");
-        questionType.appendChild(document.createTextNode('Question type'));
+        var questionType1 = document.createElement('button');
+        questionType1.className = 'btn btn-light dropdown-toggle shadow-sm';
+        questionType1.type = 'button';
+        questionType1.id = 'dropdownMenuButton';
+        questionType1.setAttribute("data-toggle", "dropdown");
+        questionType1.setAttribute("aria-haspopup", "true");
+        questionType1.setAttribute("aria-expanded", "false");
+        questionType1.appendChild(document.createTextNode('Question type'));
         var dropMenu = document.createElement('div');
         dropMenu.className = ('dropdown-menu');
         dropMenu.setAttribute("aria-labelledby", "dropBtn");
@@ -172,15 +173,22 @@ document.addEventListener('DOMContentLoaded', function () {
         multBtn.className = ('dropdown-item');
         multBtn.id = ('multiple');
         multBtn.appendChild(document.createTextNode('Multiple choice'));
-        dropDownAddedQ.appendChild(questionType);
+        dropDownAddedQ.appendChild(questionType1);
         dropDownAddedQ.appendChild(dropMenu);
         dropMenu.appendChild(openBtn);
         dropMenu.appendChild(multBtn);
         formNewQ.appendChild(dropDownAddedQ);
         addedStuff.appendChild(formNewQ);
       
-        openBtn.onclick = open;
-        
+
+        openBtn.onclick = hideNewQ;
+        multBtn.onclick = multipleChoice; 
+
+        function hideNewQ() {
+            questionType1.hidden = true;
+            open()
+        }
+
     }
     addQuestion.onclick = newQuestion;
     
@@ -197,28 +205,30 @@ document.addEventListener('DOMContentLoaded', function () {
         addedStuff.appendChild(formOpen);
     
         var delOpen = document.createElement('div');
-        delOpen.className = ('button')
-        delOpen.id = ('deleteBtn')
+        delOpen.className = ('button');
+        delOpen.id = ('deleteBtn');
         var deleteBtn = document.createElement('button');
-        deleteBtn.className = 'btn btn-danger btn-sm float-right delete'
+        deleteBtn.className = 'btn btn-danger btn-sm float-right delete shadow-sm';
+        var lineBr = document.createElement("br");
+        var lineBr1 = document.createElement("br");
         deleteBtn.appendChild(document.createTextNode('Delete Question'));
         delOpen.appendChild(deleteBtn);
+        delOpen.appendChild(lineBr);
+        delOpen.appendChild(lineBr1);
         addedStuff.appendChild(delOpen)
-    
-    
+
             function delQuestion() {
                 openQuestion.hidden = true;
                 delOpen.hidden = true;
-                newQuestion();
+                var questionType = document.getElementById('dropdownMenuButton');
+                questionType.hidden = true
             }
     
     delOpen.onclick = delQuestion
     
-    const questionType = document.getElementById('dropdownMenuButton');
-    questionType.hidden = true;
-            
+             
     }
-    openEnded.onclick = open;
+
     
     
     
@@ -271,31 +281,55 @@ document.addEventListener('DOMContentLoaded', function () {
         questionType.hidden = true;
                                    
     }
-    multiple.onclick = multipleChoice;
+
     
     
     function newFile() {
         
-        var newFile = document.getElementById('newFile');
-        var addedFile = document.createElement('input')
+        var customFile = document.createElement('div');
+        customFile.className = 'custom-file';
+        var addedFile = document.createElement('input');
         addedFile.className = 'custom-file-input';
         addedFile.type = 'file';
         addedFile.id = 'inputGroupFile01';
         var addedLabel = document.createElement('label');
         addedLabel.className = 'custom-file-label';
         addedLabel.htmlFor = 'inputGroupFile01';
+        var lineBr = document.createElement("br");
+        var lineBr1 = document.createElement("br");
         addedLabel.appendChild(document.createTextNode('Choose file'));
-        newFile.appendChild(addedFile);
-        newFile.appendChild(addedLabel);
+        customFile.appendChild(addedFile);
+        customFile.appendChild(addedLabel);
+        customFile.appendChild(lineBr);
+        customFile.appendChild(lineBr1);
+        
     
+        var delFile = document.createElement('div');
+        delFile.className = ('button');
+        delFile.id = ('deleteBtn');
+        var deleteBtn = document.createElement('button');
+        deleteBtn.className = 'btn btn-danger btn-sm float-right delete shadow-sm';
+        deleteBtn.appendChild(document.createTextNode('Delete File'));
+        delFile.appendChild(deleteBtn);
+        delFile.appendChild(lineBr);
+        delFile.appendChild(lineBr1);
+        addedStuff.appendChild(customFile);
+        addedStuff.appendChild(delFile)
+    
+    
+            function deleteFile() {
+                customFile.hidden = true;
+                delFile.hidden = true;
+                }
+    
+    delFile.onclick = deleteFile
+    
+
     }
     
     addFile.onclick = newFile
     
     
-    
-
-
 
 })
 
