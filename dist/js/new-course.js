@@ -93,7 +93,27 @@ document.addEventListener('DOMContentLoaded', function () {
         dropDown.appendChild(dropMenu);
         dropMenu.appendChild(multBtn);
         dropMenu.appendChild(openBtn);
-       
+
+`<div class="card-header"><h3 class="text-center font-weight-light my-4">Lesson 1</h3></div>
+<div class="card-body">
+    <form id="lesson1">
+        <div class="form-group">
+            <label class="small mb-1" for="lessonName">Lesson Name</label>
+            <input class="form-control py-4" id="lessonName" type="Name" placeholder="Enter lesson name" required/>
+        </div> 
+        <div class="form-group">
+            <div id="addedStuff"></div>
+            <div class="form-group" id="options"></div>
+            <div class="button" id="addOption"></div>
+            </div>
+    </form>
+</div>
+<div class="card-footer">
+    <button type="button" id="addQuestion" class="btn btn-light float-right shadow">Add Question</button>
+    <button type="button" id="addFile" class="btn btn-light float-left shadow">Add File</button>
+</div>
+<div id="newLesson"></div>`                         
+
 
         newLesson.innerHTML = `
         <div class="card-header"><h3 class="text-center font-weight-light my-4">Lesson ${lessonNr}</h3></div>
