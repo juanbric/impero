@@ -3,18 +3,16 @@ document.addEventListener('DOMContentLoaded', function () {
     const addFile = document.querySelector('#addFile');
     const addSection = document.querySelector('#addSection');
     const addQuestion = document.querySelector('#addQuestion');
-    const openEnded = document.getElementById('openEnded');
-    const multiple = document.getElementById('multiple');
-    const questionType = document.getElementById('dropdownMenuButton');
-    var addOption = document.getElementById('addOption');
     const addedStuff = document.getElementById('addedStuff');
+    const lineBr = document.createElement("br");
+    const lineBr1 = document.createElement("br");
+            
 
     function newSection() {
         var newLesson = document.getElementById('newLesson');
         
-        var lessonNr = 1;
-        var currentLess = lessonNr++;
-    
+        var lessonNr = 2;
+        
         var header = document.createElement('div');
         header.className = 'card-header';
         
@@ -139,8 +137,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
         `;
 
-
-
     }
     addSection.onclick = newSection;
     
@@ -179,109 +175,122 @@ document.addEventListener('DOMContentLoaded', function () {
         dropMenu.appendChild(multBtn);
         formNewQ.appendChild(dropDownAddedQ);
         addedStuff.appendChild(formNewQ);
-      
+    
+        openBtn.onclick = hideNewOp;
+        multBtn.onclick = hideNewMul; 
 
-        openBtn.onclick = hideNewQ;
-        multBtn.onclick = multipleChoice; 
+        function hideNewMul() {
+            questionType1.hidden = true;
+            multipleChoice()
+        }
 
-        function hideNewQ() {
+        function hideNewOp() {
             questionType1.hidden = true;
             open()
         }
 
+
+        function multipleChoice() {
+
+            var formMult = document.createElement('div');
+            formMult.className = 'form-group';
+            var options = document.createElement('div');
+            options.className = 'form-group px-4';
+            var multipleQuestion = document.createElement('input');
+            var container = document.createElement('div');
+            container.className = ('container');
+            multipleQuestion.className = 'form-control py-4';
+            multipleQuestion.placeholder = 'Enter question';
+            multipleQuestion.required = true;
+            formMult.appendChild(multipleQuestion);
+            formMult.appendChild(lineBr);
+            container.appendChild(formMult);
+            addedStuff.appendChild(formMult);
+           
+            var option1 = document.createElement('input');
+            option1.className = 'form-control py-4';
+            option1.placeholder = 'Option 1';
+            option1.required = true;
+            options.appendChild(option1);
+            
+            var option2 = document.createElement('input');
+            option2.className = 'form-control py-4';
+            option2.placeholder = 'Option 2';
+            option2.required = true;
+            options.appendChild(option2);
+            formMult.appendChild(options);
+    
+            var addOp = document.createElement('button');
+            addOp.className = 'btn btn-light btn-sm float-right delete'
+            addOp.appendChild(document.createTextNode('Add option'));
+            addOption.appendChild(addOp);
+            formMult.appendChild(addOption);
+            formMult.appendChild(lineBr);
+            formMult.appendChild(lineBr1);
+    
+            function newOption() {
+            var option3 = document.createElement('input');
+            option3.className = 'form-control py-4';
+            option3.placeholder = `Option 3`;
+            option3.required = true;
+            options.appendChild(option3);
+    
+            var delOp = document.createElement('button');
+            delOp.className = 'btn btn-light btn-sm float-right delete shadow-sm'
+            delOp.appendChild(document.createTextNode('Delete option'));
+            addOption.appendChild(delOp);
+    
+            }
+    
+            addOp.onclick = newOption;
+        
+            
+            const questionType = document.getElementById('dropdownMenuButton');
+            questionType.hidden = true;
+                                       
+        }
+    
+
+
+
+        function open() {
+    
+            var formOpen = document.createElement('div');
+            formOpen.className = ('form-group');
+            formOpen.id = ('newQuestion');
+            var openQuestion = document.createElement('input');
+            openQuestion.className = 'form-control py-4';
+            openQuestion.placeholder = 'Enter question';
+            openQuestion.required = true;
+            formOpen.appendChild(openQuestion);
+            formNewQ.appendChild(formOpen);
+        
+            var delOpen = document.createElement('div');
+            delOpen.className = ('button');
+            delOpen.id = ('deleteBtn');
+            var deleteBtn = document.createElement('button');
+            deleteBtn.className = 'btn btn-light btn-sm float-right delete shadow-sm';
+            deleteBtn.appendChild(document.createTextNode('Delete Question'));
+            delOpen.appendChild(deleteBtn);
+            delOpen.appendChild(lineBr);
+            delOpen.appendChild(lineBr1);
+            formNewQ.appendChild(delOpen)
+    
+                function delQuestion() {
+                    openQuestion.hidden = true;
+                    delOpen.hidden = true;
+                    var questionType = document.getElementById('dropdownMenuButton');
+                    questionType.hidden = true
+                }
+        
+        delOpen.onclick = delQuestion
+                
+        }    
+
     }
     addQuestion.onclick = newQuestion;
     
-    function open() {
     
-        var formOpen = document.createElement('div');
-        formOpen.className = ('form-group');
-        formOpen.id = ('newQuestion');
-        var openQuestion = document.createElement('input');
-        openQuestion.className = 'form-control py-4';
-        openQuestion.placeholder = 'Enter question';
-        openQuestion.required = true;
-        formOpen.appendChild(openQuestion);
-        addedStuff.appendChild(formOpen);
-    
-        var delOpen = document.createElement('div');
-        delOpen.className = ('button');
-        delOpen.id = ('deleteBtn');
-        var deleteBtn = document.createElement('button');
-        deleteBtn.className = 'btn btn-danger btn-sm float-right delete shadow-sm';
-        var lineBr = document.createElement("br");
-        var lineBr1 = document.createElement("br");
-        deleteBtn.appendChild(document.createTextNode('Delete Question'));
-        delOpen.appendChild(deleteBtn);
-        delOpen.appendChild(lineBr);
-        delOpen.appendChild(lineBr1);
-        addedStuff.appendChild(delOpen)
-
-            function delQuestion() {
-                openQuestion.hidden = true;
-                delOpen.hidden = true;
-                var questionType = document.getElementById('dropdownMenuButton');
-                questionType.hidden = true
-            }
-    
-    delOpen.onclick = delQuestion
-    
-             
-    }
-
-    
-    
-    
-    function multipleChoice() {
-    
-        var newQuestion = document.getElementById('newQuestion');
-        var multipleQuestion = document.createElement('input');
-        multipleQuestion.className = 'form-control py-4';
-        multipleQuestion.placeholder = 'Enter question';
-        multipleQuestion.required = true;
-        newQuestion.appendChild(multipleQuestion);
-       
-        var options = document.getElementById('options');
-        var option1 = document.createElement('input');
-        option1.className = 'form-control py-1';
-        option1.placeholder = 'Enter option 1';
-        option1.required = true;
-        options.appendChild(option1);
-        
-        var option2 = document.createElement('input');
-        option2.className = 'form-control py-1';
-        option2.placeholder = 'Enter option 2';
-        option2.required = true;
-        options.appendChild(option2);
-
-        var addOp = document.createElement('button');
-        addOp.className = 'btn btn-light btn-sm float-right delete'
-        addOp.appendChild(document.createTextNode('Add option'));
-        addOption.appendChild(addOp);
-
-
-        function newOption() {
-        var option3 = document.createElement('input');
-        option3.className = 'form-control py-1';
-        option3.placeholder = `Enter option 3`;
-        option3.required = true;
-        options.appendChild(option3);
-
-        var delOp = document.createElement('button');
-        delOp.className = 'btn btn-danger btn-sm float-right delete'
-        delOp.appendChild(document.createTextNode('Delete option'));
-        addOption.appendChild(delOp);
-
-        }
-
-        addOp.onclick = newOption;
-    
-        
-        const questionType = document.getElementById('dropdownMenuButton');
-        questionType.hidden = true;
-                                   
-    }
-
     
     
     function newFile() {
@@ -295,27 +304,26 @@ document.addEventListener('DOMContentLoaded', function () {
         var addedLabel = document.createElement('label');
         addedLabel.className = 'custom-file-label';
         addedLabel.htmlFor = 'inputGroupFile01';
-        var lineBr = document.createElement("br");
-        var lineBr1 = document.createElement("br");
         addedLabel.appendChild(document.createTextNode('Choose file'));
         customFile.appendChild(addedFile);
         customFile.appendChild(addedLabel);
-        customFile.appendChild(lineBr);
-        customFile.appendChild(lineBr1);
         
     
         var delFile = document.createElement('div');
         delFile.className = ('button');
         delFile.id = ('deleteBtn');
         var deleteBtn = document.createElement('button');
-        deleteBtn.className = 'btn btn-danger btn-sm float-right delete shadow-sm';
+        deleteBtn.className = 'btn btn-light btn-sm float-right delete shadow-sm';
         deleteBtn.appendChild(document.createTextNode('Delete File'));
         delFile.appendChild(deleteBtn);
+        addedStuff.appendChild(customFile);
+        addedStuff.appendChild(lineBr);
+        addedStuff.appendChild(lineBr1);
+        addedStuff.appendChild(delFile)
+   
         delFile.appendChild(lineBr);
         delFile.appendChild(lineBr1);
-        addedStuff.appendChild(customFile);
-        addedStuff.appendChild(delFile)
-    
+         
     
             function deleteFile() {
                 customFile.hidden = true;
