@@ -9,18 +9,13 @@ document.addEventListener('DOMContentLoaded', function () {
             
 
     function newSection() {
-        var newLesson = document.getElementById('newLesson');
-        
         var lessonNr = 2;
-        
+        var newLesson = document.getElementById('newLesson');
         var header = document.createElement('div');
         header.className = 'card-header';
-        
         var h3 = document.createElement('h3');
         h3.className = 'text-center font-weight-light my-4';
         h3.appendChild(document.createTextNode(`Lesson ${lessonNr}`));
-        
-
         var body = document.createElement('div');
         body.className = 'card-body';
         var form = document.createElement('form');
@@ -37,133 +32,38 @@ document.addEventListener('DOMContentLoaded', function () {
         lessonInput.type = ('Name');
         lessonInput.placeholder = ('Enter lesson name');
         lessonInput.required = true;
-        var customFile = document.createElement('div');
-        customFile.className = ('custom-file');
-        var inputFile = document.createElement('input');
-        inputFile.className = ('custom-file-input');
-        inputFile.id = (`inputGroupFile${lessonNr}`);
-        labelFile = document.createElement('label');
-        labelFile.className = ('custom-file-label');
-        labelFile.htmlFor = (`inputGroupFile${lessonNr}`);
-        labelFile.appendChild(document.createTextNode('Choose file'));
-
-        var formGroup2 = document.createElement('div');
-        formGroup2.className = ('form-group d-flex justify-content-center');
-        var dropDown = document.createElement('div');
-        dropDown.className = ('dropdown');
-        var dropBtn = document.createElement('button');
-        dropBtn.className = ('btn btn-white dropdown-toggle');
-        dropBtn.type = ('button');
-        dropBtn.id = ('dropBtn');
-        dropBtn.setAttribute("data-toggle", "dropdown");
-        dropBtn.setAttribute("aria-haspopup", "true");
-        dropBtn.setAttribute("aria-expanded", "false");
-        dropBtn.appendChild(document.createTextNode('Question type'));
-        var dropMenu = document.createElement('div');
-        dropMenu.className = ('dropdown-menu');
-        dropMenu.setAttribute("aria-labelledby", "dropBtn");
-        var openBtn = document.createElement('button');
-        openBtn.className = ('dropdown-item');
-        openBtn.id = ('openEnded');
-        openBtn.appendChild(document.createTextNode('Open-ended'));
-        var multBtn = document.createElement('button');
-        multBtn.className = ('dropdown-item');
-        multBtn.id = ('multiple');
-        multBtn.appendChild(document.createTextNode('Multiple choice'));
-        
-        var newQ = document.createElement('div');
-        newQ.className = ('form-group');
-        newQ.id = ('newQuestion');
-
-    
+        var formGroup1 = document.createElement('div');
+        formGroup1.className = ('form-group');
+        var footer = document.createElement('div');
+        footer.className = ('card-footer');
+        var addQ = document.createElement('button');
+        addQ.className = ('btn btn-light float-right shadow');
+        addQ.id = ('addQuetion');
+        addQ.type = ('button');
+        addQ.appendChild(document.createTextNode('Add Question'));
+        var addF = document.createElement('button');
+        addF.className = ('btn btn-light float-left shadow');
+        addF.id = ('addFile');
+        addF.type = ('button');
+        addF.appendChild(document.createTextNode('Add File'));
         
         newLesson.appendChild(header);
-        newLesson.appendChild(body);
         header.appendChild(h3);
+        newLesson.appendChild(body);
         body.appendChild(form);
         form.appendChild(formGroup);
-        form.appendChild(customFile);
-        form.appendChild(formGroup2);
+        form.appendChild(formGroup1);
         formGroup.appendChild(lessonLabel);
         formGroup.appendChild(lessonInput);
-        customFile.appendChild(inputFile);
-        customFile.appendChild(labelFile);
-        formGroup2.appendChild(dropDown);
-        dropDown.appendChild(dropBtn);
-        dropDown.appendChild(dropMenu);
-        dropMenu.appendChild(multBtn);
-        dropMenu.appendChild(openBtn);
-
-`<div class="card-header"><h3 class="text-center font-weight-light my-4">Lesson 1</h3></div>
-<div class="card-body">
-    <form id="lesson1">
-        <div class="form-group">
-            <label class="small mb-1" for="lessonName">Lesson Name</label>
-            <input class="form-control py-4" id="lessonName" type="Name" placeholder="Enter lesson name" required/>
-        </div> 
-        <div class="form-group">
-            <div id="addedStuff"></div>
-            <div class="form-group" id="options"></div>
-            <div class="button" id="addOption"></div>
-            </div>
-    </form>
-</div>
-<div class="card-footer">
-    <button type="button" id="addQuestion" class="btn btn-light float-right shadow">Add Question</button>
-    <button type="button" id="addFile" class="btn btn-light float-left shadow">Add File</button>
-</div>
-<div id="newLesson"></div>`                         
-
-
-        newLesson.innerHTML = `
-        <div class="card-header"><h3 class="text-center font-weight-light my-4">Lesson ${lessonNr}</h3></div>
-        <div class="card-body">
-            <form id="lesson1">
-                <div class="form-group">
-                    <label class="small mb-1" for="lessonName">Lesson Name</label>
-                    <input class="form-control py-4" id="lessonName" type="Name" placeholder="Enter lesson name" required/>
-                </div>        
-                <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="inputGroupFile01">
-                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                  </div><br><br>
-                <div class="form-group">
-                    <div class="dropdown">
-                        <button class="btn btn-white dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          Question type
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                          <button class="dropdown-item" id="openEnded">Open-ended</button>
-                          <button class="dropdown-item" id="multiple">Multiple choice</button>
-                        </div>
-                    </div>
-                      <div class="form-group" id="newQuestion"></div>
-                      <div class="button" id="deleteBtn"></div>
-                      <div class="form-group" id="options"></div>
-                      <div class="dropdown" id="addedQuestion"><div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <button class="dropdown-item" id="openEnded">Open-ended</button>
-                        <button class="dropdown-item" id="multiple">Multiple choice</button>
-                      </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-        <div class="card-footer">
-        <button type="button" id="addQuestion" class="btn btn-light float-right shadow">Add Question</button>
-        <button type="button" id="addFile" class="btn btn-light float-left shadow">Add File</button>
-    </div></div>
-
-<div id="newLesson"></div>
-
-        `;
-
+        formGroup1.appendChild(addedStuff);
+        newLesson.appendChild(footer);
+        footer.appendChild(addQ);
+        footer.appendChild(addF);
+        newLesson.appendChild(lineBr);
     }
     addSection.onclick = newSection;
+
     
-
-
-
-
     function newQuestion() {
         
         var formNewQ = document.createElement('div');
@@ -243,8 +143,7 @@ document.addEventListener('DOMContentLoaded', function () {
             var addOp = document.createElement('button');
             addOp.className = 'btn btn-light btn-sm float-right delete'
             addOp.appendChild(document.createTextNode('Add option'));
-            addOption.appendChild(addOp);
-            formMult.appendChild(addOption);
+            formMult.appendChild(addOp);
             formMult.appendChild(lineBr);
             formMult.appendChild(lineBr1);
     
@@ -258,7 +157,7 @@ document.addEventListener('DOMContentLoaded', function () {
             var delOp = document.createElement('button');
             delOp.className = 'btn btn-light btn-sm float-right delete shadow-sm'
             delOp.appendChild(document.createTextNode('Delete option'));
-            addOption.appendChild(delOp);
+            formMult.appendChild(delOp);
     
             }
     
