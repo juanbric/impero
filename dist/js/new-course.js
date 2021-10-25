@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     addSection.onclick = newSection;
 
-    
+
     function newQuestion() {
         
         var formNewQ = document.createElement('div');
@@ -108,7 +108,6 @@ document.addEventListener('DOMContentLoaded', function () {
             questionType1.hidden = true;
             open()
         }
-
 
         function multipleChoice() {
 
@@ -168,9 +167,6 @@ document.addEventListener('DOMContentLoaded', function () {
             questionType.hidden = true;
                                        
         }
-    
-
-
 
         function open() {
     
@@ -208,9 +204,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     }
     addQuestion.onclick = newQuestion;
-    
-    
-    
     
     function newFile() {
         
