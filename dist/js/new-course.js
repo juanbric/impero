@@ -6,16 +6,16 @@ document.addEventListener('DOMContentLoaded', function () {
     const addedStuff = document.getElementById('addedStuff');
     const lineBr = document.createElement("br");
     const lineBr1 = document.createElement("br");
-            
-
+    var lessonNr = 1;
+    
+    
     function newSection() {
-        var lessonNr = 2;
         var newLesson = document.getElementById('newLesson');
         var header = document.createElement('div');
         header.className = 'card-header';
         var h3 = document.createElement('h3');
         h3.className = 'text-center font-weight-light my-4';
-        h3.appendChild(document.createTextNode(`Lesson ${lessonNr}`));
+        h3.textContent = "Lesson " + (++lessonNr);
         var body = document.createElement('div');
         body.className = 'card-body';
         var form = document.createElement('form');
@@ -24,11 +24,11 @@ document.addEventListener('DOMContentLoaded', function () {
         formGroup.className = ('form-group');
         var lessonLabel = document.createElement('label');
         lessonLabel.className = ('small mb-1');
-        lessonLabel.for = (`lessonName${lessonNr}`);
+        lessonLabel.for = "lessonName" + (lessonNr);;
         lessonLabel.appendChild(document.createTextNode('Lesson Name'));
         var lessonInput = document.createElement('input');
         lessonInput.className = ('form-control py-4');
-        lessonInput.id = (`lessonName${lessonNr}`);
+        lessonInput.id = "lessonName" + (lessonNr);
         lessonInput.type = ('Name');
         lessonInput.placeholder = ('Enter lesson name');
         lessonInput.required = true;
